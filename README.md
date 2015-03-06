@@ -1,8 +1,13 @@
-# junit-recording-logger
+# Xenei JUnit Recording Log Appender
 A log4j logging appender that records the logging events for later testing. 
 Used in junit tests to verify that messages have been written to the log.
 
-# example of usage
+# License
+Xenei JUnit Recording Log Appender is licensed under the Apache 2.0 license. 
+A copy of the license should be included with source and packaged in the jar.
+
+
+# Example of Usage
     // add the recording logger to log4j
     private RecordingAppender recording = new RecordingAppender();
     private Logger log = Logger.getLogger( this.getClass() );
