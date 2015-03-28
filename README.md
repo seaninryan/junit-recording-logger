@@ -8,15 +8,21 @@ A copy of the license should be included with source and packaged in the jar.
 
 # Release Information
 
-Maven info:
+## Maven info:
 
      Group Id: org.xenei.logging 
      Artifact Id: junit-recording-logger 
      
 
+## Snapshots
+
 Snapshot versions are hosted at:
 
-     https://oss.sonatype.org/content/repositories/snapshots/
+https://oss.sonatype.org/content/repositories/snapshots/
+ 
+Snapshot download URL:
+
+https://oss.sonatype.org/content/repositories/snapshots/org/xenei/logging/junit-recording-log   
 
 
 # Example of Usage
