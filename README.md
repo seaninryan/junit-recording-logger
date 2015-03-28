@@ -6,6 +6,18 @@ Used in junit tests to verify that messages have been written to the log.
 Xenei JUnit Recording Log Appender is licensed under the Apache 2.0 license. 
 A copy of the license should be included with source and packaged in the jar.
 
+# Release Information
+
+Maven info:
+
+     Group Id: org.xenei.logging 
+     Artifact Id: junit-recording-logger 
+     
+
+Snapshot versions are hosted at:
+
+     https://oss.sonatype.org/content/repositories/snapshots/
+
 
 # Example of Usage
     // add the recording logger to log4j
