@@ -22,7 +22,7 @@ https://oss.sonatype.org/content/repositories/snapshots/
  
 Snapshot download URL:
 
-https://oss.sonatype.org/content/repositories/snapshots/org/xenei/logging/junit-recording-log   
+https://oss.sonatype.org/content/repositories/snapshots/org/xenei/logging/junit-recording-logger/ 
 
 
 # Example of Usage
