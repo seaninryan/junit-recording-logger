@@ -12,7 +12,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
+<scm>
+        <url>git@github.com:Claudenw/junit-recording-logger.git</url>
+        <connection>scm:git:git@github.com:Claudenw/junit-recording-logger.git</connection>
+        <developerConnection>scm:git:git@github.com:Claudenw/junit-recording-logger.git</developerConnection>
+    </scm>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>

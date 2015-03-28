@@ -140,8 +140,23 @@ public class RecordingAppender extends AppenderSkeleton {
 	public final void assertHas(final Selector selector,
 			final List<LoggingEvent> events) {
 		if (has(selector, events) == false) {
-			Assert.fail("expected " + events + " but got " + history);
+			Assert.fail("expected " + asStrings(events) + " but got " + asStrings(history));
 		}
+	}
+	
+	private List<String> asStrings( LoggingEvent... events)
+	{
+		return asStrings( Arrays.asList(events));
+	}
+	
+	private List<String> asStrings( List<LoggingEvent> events)
+	{
+		List<String> retval = new ArrayList<String>( events.size() );
+		for (LoggingEvent e : events )
+		{
+			retval.add( e.getMessage().toString());
+		}
+		return retval;
 	}
 
 	/**
@@ -156,8 +171,7 @@ public class RecordingAppender extends AppenderSkeleton {
 	public final void assertContains(final Selector selector,
 			final LoggingEvent... events) {
 		if (contains(selector, events) == false) {
-			Assert.fail(String.format("expected %s but got %s",
-					Arrays.asList(events), history));
+			Assert.fail(String.format( "Did not find %s in the logging history: %s", asStrings( events ), asStrings(history)));
 		}
 	}
 
@@ -172,9 +186,9 @@ public class RecordingAppender extends AppenderSkeleton {
 	 */
 	public final void assertHasStart(final Selector selector,
 			final LoggingEvent... start) {
-		final List<LoggingEvent> L = Arrays.asList(start);
-		if (hasStart(selector, L) == false) {
-			Assert.fail("expected " + L + " at the beginning of " + history);
+		final List<LoggingEvent> startList = Arrays.asList(start);
+		if (hasStart(selector, startList) == false) {
+			Assert.fail("expected " + asStrings(startList) + " at the beginning of " + asStrings(history));
 		}
 	}
 
@@ -189,9 +203,9 @@ public class RecordingAppender extends AppenderSkeleton {
 	 */
 	public final void assertHasEnd(final Selector selector,
 			final LoggingEvent... end) {
-		final List<LoggingEvent> L = Arrays.asList(end);
-		if (hasEnd(selector, L) == false) {
-			Assert.fail("expected " + L + " at the end of " + history);
+		final List<LoggingEvent> endList = Arrays.asList(end);
+		if (hasEnd(selector, endList) == false) {
+			Assert.fail("expected " + asStrings(endList) + " at the end of " + asStrings(history));
 		}
 	}
 
@@ -237,6 +251,15 @@ public class RecordingAppender extends AppenderSkeleton {
 		return false;
 	}
 
+	/**
+	 * Returns an iterator over all the recorded events.
+	 * @return the iterator.
+	 */
+	public final Iterator<LoggingEvent> getEvents()
+	{
+		return history.iterator();
+	}
+	
 	/**
 	 * Returns an iterator over the recorded events following the first instance
 	 * of the start event.
