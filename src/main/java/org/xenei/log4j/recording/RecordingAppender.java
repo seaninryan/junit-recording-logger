@@ -33,6 +33,8 @@ import org.xenei.log4j.recording.selector.Selector;
  * junit tests to verify that messages have been written to the log.
  *
  * Tests use a Selector to determine if the logging events are found.
+ * 
+ * Comparison is always selector.matches( recordedEvent, testEvent )
  *
  */
 public class RecordingAppender extends AppenderSkeleton {
@@ -54,6 +56,7 @@ public class RecordingAppender extends AppenderSkeleton {
 		// do nothing
 	}
 
+	@Override
 	public boolean requiresLayout() {
 		return false;
 	}
@@ -63,13 +66,23 @@ public class RecordingAppender extends AppenderSkeleton {
 		history.add(event);
 	}
 
+	/**
+	 * Check if a list of events match as per the selector.
+	 * 
+	 * checks that the selector determines that each event in list1 matches the corresponding
+	 *  event in list2.
+	 * @param selector The selector to use
+	 * @param list1 The list of first events.
+	 * @param list2 The list of second events.
+	 * @return true if the selector determines that each event in list1 matches the correspo.
+	 */
 	private final boolean has(final Selector selector,
-			final List<LoggingEvent> event1, final List<LoggingEvent> event2) {
-		if (event1.size() != event2.size()) {
+			final List<LoggingEvent> list1, final List<LoggingEvent> list2) {
+		if (list1.size() != list2.size()) {
 			return false;
 		}
-		for (int i = 0; i < event1.size(); i++) {
-			if (!selector.matches(event1.get(i), event2.get(i))) {
+		for (int i = 0; i < list1.size(); i++) {
+			if (!selector.matches(list1.get(i), list2.get(i))) {
 				return false;
 			}
 		}
@@ -88,7 +101,7 @@ public class RecordingAppender extends AppenderSkeleton {
 	 */
 	public final boolean has(final Selector selector,
 			final List<LoggingEvent> things) {
-		return has(selector, things, history);
+		return has(selector, history, things);
 	}
 
 	/**
@@ -104,7 +117,7 @@ public class RecordingAppender extends AppenderSkeleton {
 	public final boolean hasStart(final Selector selector,
 			final List<LoggingEvent> events) {
 		if (events.size() <= history.size()) {
-			return has(selector, events, history.subList(0, events.size()));
+			return has(selector, history.subList(0, events.size()), events);
 		}
 		return false;
 	}
@@ -122,8 +135,9 @@ public class RecordingAppender extends AppenderSkeleton {
 	public final boolean hasEnd(final Selector selector,
 			final List<LoggingEvent> events) {
 		if (events.size() <= history.size()) {
-			return has(selector, events,
-					history.subList(history.size() - events.size(), history.size()));
+			return has(selector,
+					history.subList(history.size() - events.size(), history.size()),
+					 events);
 		}
 		return false;
 	}
