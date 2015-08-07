@@ -2,14 +2,11 @@ package org.xenei.log4j.recording;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
-
 import org.apache.log4j.Logger;
 import org.xenei.log4j.recording.events.StringEvent;
 import org.xenei.log4j.recording.selector.MessageSelector;
 import org.xenei.log4j.recording.selector.Selector;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
