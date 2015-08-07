@@ -20,6 +20,7 @@ package org.xenei.log4j.recording.events;
 
 import org.apache.log4j.Category;
 import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.apache.log4j.spi.LoggingEvent;
 
@@ -49,7 +50,7 @@ public class ThrowableEvent extends LoggingEvent {
      * @return The category.
      */
     public static Category getCategory() {
-        return Category.getInstance(getCategoryClass());
+        return Logger.getLogger(getCategoryClass());
     }
 
     /**
@@ -112,7 +113,7 @@ public class ThrowableEvent extends LoggingEvent {
      */
     public ThrowableEvent(final String fqnOfCategoryClass,
             final Priority level, final String message, Throwable throwable) {
-        this(fqnOfCategoryClass, Category.getInstance(fqnOfCategoryClass),
+        this(fqnOfCategoryClass, Logger.getLogger(fqnOfCategoryClass),
                 level, message, throwable);
     }
 }

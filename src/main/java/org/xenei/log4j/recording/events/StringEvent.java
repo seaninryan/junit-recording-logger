@@ -19,6 +19,8 @@
 package org.xenei.log4j.recording.events;
 
 import org.apache.log4j.Category;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.apache.log4j.spi.LoggingEvent;
 
@@ -49,7 +51,7 @@ public class StringEvent extends LoggingEvent {
 	 * @return The category.
 	 */
 	public static Category getCategory() {
-		return Category.getInstance(getCategoryClass());
+		return Logger.getLogger(getCategoryClass());
 	}
 
 	/**
@@ -81,7 +83,7 @@ public class StringEvent extends LoggingEvent {
 	 *            The message.
 	 */
 	public StringEvent(final String message) {
-		this(Priority.DEBUG, message);
+		this(Level.DEBUG, message);
 	}
 
 	/**
@@ -113,7 +115,7 @@ public class StringEvent extends LoggingEvent {
 	 */
 	public StringEvent(final String fqnOfCategoryClass, final Priority level,
 			final String message) {
-		this(fqnOfCategoryClass, Category.getInstance(fqnOfCategoryClass),
+		this(fqnOfCategoryClass, Logger.getLogger(fqnOfCategoryClass),
 				level, message, null);
 	}
 }

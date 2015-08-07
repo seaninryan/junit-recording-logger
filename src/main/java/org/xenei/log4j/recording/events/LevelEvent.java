@@ -7,8 +7,8 @@
 
 package org.xenei.log4j.recording.events;
 
-import org.apache.log4j.Category;
 import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.apache.log4j.spi.LoggingEvent;
 
 /**
@@ -25,7 +25,7 @@ public class LevelEvent extends LoggingEvent {
      */
     public LevelEvent(Level level) {
         super(LevelEvent.class.getCanonicalName(),
-                Category.getInstance(LevelEvent.class.getCanonicalName()),
+                Logger.getLogger(LevelEvent.class.getCanonicalName()),
                 level, "", null);
     }
 
